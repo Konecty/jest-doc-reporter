@@ -3,14 +3,23 @@ export default {
 	collectCoverage: true,
 	coverageDirectory: 'coverage',
 	coverageProvider: 'v8',
-	// globalSetup: '<rootDir>/src/test/globalSetup.ts',
-	// globalTeardown: '<rootDir>/src/test/globalTeardown.ts',
 
 	testEnvironment: 'jest-environment-node',
 
 	transform: {
 		'^.+\\.tsx?$': 'ts-jest',
 	},
+	reporters: [
+		'default',
 
+		[
+			'.',
+			{
+				title: 'Konecty Jest Docs Reporter',
+				outputPath: './docs',
+				sort: 'asc',
+			},
+		],
+	],
 	verbose: true,
 };
