@@ -4,6 +4,8 @@ import JestDocReporter from '../src';
 import { mockedJestGlobalConfig } from './fixtures/jest-config';
 import { mockedJestResponseSingleTestResult } from './fixtures/jest-results';
 
+jest.mock('mkdirp');
+
 describe('index', () => {
 	let writeFileSync: SinonStub;
 
