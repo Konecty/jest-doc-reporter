@@ -100,7 +100,10 @@ prepare:
       # Create or update the changelog file in the local project repository
     - path: '@semantic-release/git'
       # Push a release commit and tag, including configurable files
-      message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+      message: |
+          chore(release): ${nextRelease.version} [skip ci]
+
+          ${nextRelease.notes}'
       assets: ['package.json', 'CHANGELOG.md', 'dist']
 
 success: false
