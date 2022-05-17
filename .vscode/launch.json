@@ -6,6 +6,12 @@
 			"type": "node-terminal",
 			"request": "launch",
 			"command": "npm run start"
+		},
+		{
+			"name": "Test Watch",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "npm run test:watch"
 		}
 	]
 }
