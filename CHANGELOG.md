@@ -1,3 +1,26 @@
+## [1.1.0](https://github.com/Konecty/jest-doc-reporter/compare/1.0.0...1.1.0) (2022-05-20)
+
+
+### 📔 Docs
+
+* add readme ([b14bb6d](https://github.com/Konecty/jest-doc-reporter/commit/b14bb6dfdf9adddd90bbc48fd9dc95a1879a2da6))
+* add test docs ([11ccec9](https://github.com/Konecty/jest-doc-reporter/commit/11ccec9b976d539a2bba578d453646371ec140ca))
+
+
+### 🦊 CI/CD
+
+* fix publishConfig access ([9b18d84](https://github.com/Konecty/jest-doc-reporter/commit/9b18d847e78cbd41efe4b872d687527cd118d705))
+
+
+### 🧪 Tests
+
+* fix index mkdirp mock ([a80af47](https://github.com/Konecty/jest-doc-reporter/commit/a80af476e871cbab079b05a17f0e320a3d5d0ac6))
+
+
+### 🚀 Features
+
+* add oneFilePerSuite option ([c7691c4](https://github.com/Konecty/jest-doc-reporter/commit/c7691c41899e729bd73ad204d78f70b2374ec99f))
+
 ## [1.0.0](https://github.com/Konecty/jest-doc-reporter/compare/...1.0.0) (2022-05-17)
 
 
