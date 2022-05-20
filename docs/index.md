@@ -1,7 +1,5 @@
 # Konecty Jest Docs Reporter
 
----
-
 ## Render docs from jest output
 
 -   Render multiple test result with filter RegExp for suite 3
@@ -13,4 +11,5 @@
 
 ## index
 
+-   Write one file per suite
 -   should return the jest global config if used as a testResultsProcessor

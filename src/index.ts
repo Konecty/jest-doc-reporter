@@ -1,11 +1,8 @@
 import { BaseReporter } from '@jest/reporters';
 import type { AggregatedResult } from '@jest/test-result';
 import { Config } from '@jest/types';
-import chalk from 'chalk';
-import fs from 'fs';
-import mkdirp from 'mkdirp';
-import path from 'path';
-import reporter from './reporter';
+import multipleFileReporter from './reporter/multipleFileReporter';
+import singleFileReporter from './reporter/singleFileReporter';
 import { IJestDocReporterConfigOptions } from './types';
 
 /**
@@ -25,20 +22,10 @@ class JestDocReporter extends BaseReporter {
 		if (_aggregatedResults == null) {
 			return;
 		}
-		const result = reporter({
-			testData: _aggregatedResults,
-			options: this._options,
-		});
-		const currentPath = path.resolve();
-
-		const outputPath = path.resolve(currentPath, this._options.outputPath ?? './');
-
-		mkdirp.sync(outputPath);
-
-		const outputFile = path.resolve(outputPath, 'index.md');
-		fs.writeFileSync(outputFile, result);
-
-		console.info(chalk.greenBright(`@konecty/jest-doc-reporter >> Report generated (${outputFile})`));
+		if (this._options?.oneFilePerSuite === true) {
+			return multipleFileReporter(_aggregatedResults, this._options);
+		}
+		singleFileReporter(_aggregatedResults, this._options);
 	}
 }
 

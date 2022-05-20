@@ -7,6 +7,7 @@ export type IJestDocReporterConfigOptions = {
 	outputPath?: string;
 	sort?: JestDocReporterSortType;
 	filterRegex?: string | RegExp;
+	oneFilePerSuite?: boolean;
 };
 
 export interface JestDocReporterProps {

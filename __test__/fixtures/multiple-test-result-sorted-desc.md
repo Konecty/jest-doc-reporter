@@ -2,8 +2,6 @@
 
 # Jest Doc Reporter
 
----
-
 ## Suite name 3
 
 -   title c
@@ -14,6 +12,10 @@
 
 -   title b
 -   title a
+
+### Sub suite 1
+
+-   title c
 
 ## Suit name 1
 

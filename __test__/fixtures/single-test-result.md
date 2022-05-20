@@ -2,8 +2,6 @@
 
 # Jest Doc Reporter
 
----
-
 ## Suit name
 
 -   Test name 1

@@ -1,6 +1,6 @@
 {
 	"name": "@konecty/jest-doc-reporter",
-	"version": "0.0.0-development",
+	"version": "1.0.0",
 	"main": "dist/index.js",
 	"author": "Konecty Informática Ltda <support@konecty.com>",
 	"license": "MIT",

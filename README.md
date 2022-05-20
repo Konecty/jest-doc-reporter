@@ -39,10 +39,11 @@ This plugin is compatible with Node version `^16.0.0`
 
 Please note that all configuration properties are optional.
 
-| Property      | Type                | Description                                                                           | Default     |
-| ------------- | ------------------- | ------------------------------------------------------------------------------------- | ----------- |
-| `title`       | `STRING`            | The title of the document. This string will also be outputted on the top of the page. | `"Docs"`    |
-| `logo`        | `STRING`            | Path to a logo that will be included in the header of the report                      | `null`      |
-| `outputPath`  | `STRING`            | The path to where the plugin will output the HTML report.                             | `"./"`      |
-| `sort`        | `STRING`            | Sorts the test results alphabeticaly using `"asc"`, `"desc"` or `"none"`              | `"none"`    |
-| `filterRegex` | `STRING` or `REGEX` | Remove test result that matches the pattern                                           | `undefined` |
+| Property          | Type                | Description                                                                           | Default     |
+| ----------------- | ------------------- | ------------------------------------------------------------------------------------- | ----------- |
+| `title`           | `STRING`            | The title of the document. This string will also be outputted on the top of the page. | `"Docs"`    |
+| `logo`            | `STRING`            | Path to a logo that will be included in the header of the report                      | `null`      |
+| `outputPath`      | `STRING`            | The path to where the plugin will output the HTML report.                             | `"./"`      |
+| `sort`            | `STRING`            | Sorts the test results alphabeticaly using `"asc"`, `"desc"` or `"none"`              | `"none"`    |
+| `filterRegex`     | `STRING` or `REGEX` | Remove test result that matches the pattern                                           | `undefined` |
+| `oneFilePerSuite` | `BOOLEAN`           | Split results one file per suite                                                      | `false`     |

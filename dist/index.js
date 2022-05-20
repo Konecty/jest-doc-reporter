@@ -7,15 +7,9 @@ exports.default = void 0;
 
 var _reporters = require("@jest/reporters");
 
-var _chalk = _interopRequireDefault(require("chalk"));
+var _multipleFileReporter = _interopRequireDefault(require("./reporter/multipleFileReporter"));
 
-var _fs = _interopRequireDefault(require("fs"));
-
-var _mkdirp = _interopRequireDefault(require("mkdirp"));
-
-var _path = _interopRequireDefault(require("path"));
-
-var _reporter = _interopRequireDefault(require("./reporter"));
+var _singleFileReporter = _interopRequireDefault(require("./reporter/singleFileReporter"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34,22 +28,11 @@ class JestDocReporter extends _reporters.BaseReporter {
       return;
     }
 
-    const result = (0, _reporter.default)({
-      testData: _aggregatedResults,
-      options: this._options
-    });
+    if (this._options?.oneFilePerSuite === true) {
+      return (0, _multipleFileReporter.default)(_aggregatedResults, this._options);
+    }
 
-    const currentPath = _path.default.resolve();
-
-    const outputPath = _path.default.resolve(currentPath, this._options.outputPath ?? './');
-
-    _mkdirp.default.sync(outputPath);
-
-    const outputFile = _path.default.resolve(outputPath, 'index.md');
-
-    _fs.default.writeFileSync(outputFile, result);
-
-    console.info(_chalk.default.greenBright(`@konecty/jest-doc-reporter >> Report generated (${outputFile})`));
+    (0, _singleFileReporter.default)(_aggregatedResults, this._options);
   }
 
 }

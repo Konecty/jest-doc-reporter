@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = reporter;
 
-var _update = _interopRequireDefault(require("lodash/update"));
+var _filterEntries = _interopRequireDefault(require("../lib/filterEntries"));
+
+var _groupResults = _interopRequireDefault(require("../lib/groupResults"));
+
+var _sortEntries = _interopRequireDefault(require("../lib/sortEntries"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,44 +30,27 @@ function reporter({
   }
 
   result.push(`# ${title}\n`);
-  result.push('---\n');
-  const suites = testData.testResults.reduce((acc, testResult) => {
-    if (testResult.testResults.length === 0) {
-      return acc;
+  const testResultGroup = (0, _groupResults.default)(testData); // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+  const buildResult = (group, title, level = 0) => {
+    if (title != null) {
+      result.push(`${'#'.repeat(level + 1)} ${title}\n`);
     }
 
-    testResult.testResults.forEach(test => {
-      (0, _update.default)(acc, test.ancestorTitles, value => (value ?? []).concat(`-   ${test.title}`));
+    if (group.testResults != null) {
+      (0, _sortEntries.default)(sort, (0, _filterEntries.default)(filterRegex, group.testResults.map(({
+        title
+      }) => title))).forEach(title => {
+        result.push(`-   ${title}`);
+      });
+      result.push('');
+    }
+
+    (0, _sortEntries.default)(sort, (0, _filterEntries.default)(filterRegex, Object.keys(group).filter(k => k !== 'testResults'))).forEach(k => {
+      buildResult(group[k], k, level + 1);
     });
-    return acc;
-  }, {});
-
-  const sortedEntries = entries => {
-    if (sort === 'asc') {
-      return entries.sort();
-    }
-
-    if (sort === 'desc') {
-      return entries.sort().reverse();
-    }
-
-    return entries;
   };
 
-  const filteredEntries = entries => {
-    if (filterRegex == null) {
-      return entries;
-    }
-
-    if (filterRegex instanceof RegExp) {
-      return entries.filter(entry => !entry.match(filterRegex));
-    }
-
-    return entries.filter(entry => !entry.match(new RegExp(filterRegex)));
-  };
-
-  return result.concat(sortedEntries(filteredEntries(Object.keys(suites))).reduce((acc, suite) => {
-    acc.push(`## ${suite}\n`);
-    return acc.concat(sortedEntries(filteredEntries(suites[suite]))).concat('');
-  }, [])).join('\n');
+  buildResult(testResultGroup);
+  return result.join('\n');
 }
